@@ -1,0 +1,17 @@
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT, TA_RIGHT
+
+styles = getSampleStyleSheet()
+
+doc = SimpleDocTemplate("report.pdf",pagesize=letter, rightMargin=72,leftMargin=72,topMargin=72,bottomMargin=18)
+head_style=ParagraphStyle('Heading', parent=styles['Heading1'], fontSize=18, leading=22, alignment=TA_CENTER)
+body_style=ParagraphStyle('Body', parent=styles['Normal'], fontSize=12, leading=14)
+story = []
+heading = Paragraph("Report Title", head_style) 
+body = Paragraph(" As of Friday, October 2, 2026, NVIDIA's stock (NVDA) is trading around $234 per share. The stock has seen a slight increase since the market opened. The day's trading has ranged between approximately $233 and $238. Over the past 52 weeks, the stock has fluctuated between a low of $164.27 and a high of $237.88. The company's market capitalization stands at a significant $5.64 trillion.In recent news, NVIDIA has unveiled several new developments, primarily centered around artificial intelligence and gaming.### **AI Safety and Development**A major announcement is the **NVIDIA Open Agent Safety Platform**, a software platform aimed at improving the security of AI agents from testing to deployment. This platform includes OpenShell, a secure runtime to define boundaries for AI agents, and Sentry, a watchdog that monitors agent behavior and can quarantine those that act outside their set parameters. This initiative is a collaboration with over 100 industry partners, including major names like Microsoft, Scale AI, and Anthropic.Furthering their AI endeavors, NVIDIA has also introduced the **NVIDIA RTX Spark Superchip**. This new chip integrates NVIDIA's AI and RTX graphics technologies, aiming to enhance Windows PCs for creative tasks, AI development, and gaming.Beyond these established players, a new wave of startups is emerging in sectors like agritech and cleantech, with companies like **Apollo Agriculture** and **SunCulture** making significant strides in providing innovative solutions to farmers. The recent graduation of four Kenyan startups from the Google for Startups Accelerator Africa program, with a focus on AI, highlights the continued innovation within the ecosystem.### The Road AheadSilicon Savannah stands at a crucial juncture. While it has achieved remarkable success, the ecosystem must navigate the challenges of a maturing market. The focus is shifting from pure disruption to sustainable growth, and from a fintech-dominated landscape to a more diversified and inclusive tech sector. The ability of startups to bridge the funding gap and build resilient business models will be critical for the continued growth and success of this African tech powerhouse. The story of Silicon Savannah is a testament to the power of innovation to transform economies and societies, and its next chapter is being written by a new generation of entrepreneurs determined to build a brighter future for Kenya and beyond.", body_style)
+story.append(heading)
+story.append(Spacer(1, 12))
+story.append(body)
+doc.build(story)
